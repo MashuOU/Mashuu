@@ -1,0 +1,18 @@
+[
+    {
+        "firstName": "bambang",
+        "lastName": "sumanto",
+        "address": "jln. jalan jl gang jalan-jalan",
+        "phoneNumber": 857776211,
+        "dateOfBirth": "27-10-1997",
+        "UserId": "1"
+    },
+    {
+        "firstName": "sumantri",
+        "lastName": "sumatra",
+        "address": "jln. jalan jl gang jalan-jalan",
+        "phoneNumber": 8577745451,
+        "dateOfBirth": "20-11-1990",
+        "UserId": "2"
+    }
+]
