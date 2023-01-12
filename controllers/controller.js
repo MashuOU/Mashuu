@@ -6,12 +6,24 @@ const rupiah = require('../helpers/helper')
 class Controller {
     static home(req, res) {
         // res.send('Ini home untuk Log In')
+        // const { email, password } = req.query
+        // User.findOne({
+        //     where: {
+        //         email: email,
+        //         password: password
+        //     }
+        // })
+        //     .then(data => res.send(data))
         res.render('home')
     }
 
     static logout(req, res) {
         // res.send('Ini log out')
         res.redirect('/')
+    }
+
+    static failedLogin(req, res) {
+
     }
 
     static addUser(req, res) {
