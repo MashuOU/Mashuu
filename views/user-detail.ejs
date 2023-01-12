@@ -18,8 +18,6 @@
             </div>
         </div>
 
-
-
         <div class="container m-auto px-4 h-full pb-20">
             <div class="flex content-center items-center justify-center h-full">
                 <div class="w-full lg:w-4/12 px-4">
@@ -30,7 +28,7 @@
                                 <label class="block uppercase text-gray-700 text-xs font-bold mb-2">Username :</label>
                                 <p
                                     class="flex justify-center border-0 px-3 py-3 text-gray-700 bg-slate-100 rounded text-md shadow focus:outline-none focus:ring w-full font-bold">
-                                    <%=allData.user[0].userName %>
+                                    <%=allData.user.userName %>
                                 </p>
                             </div>
                             <div class="relative w-full mb-3 ">
@@ -38,7 +36,7 @@
                                     for="grid-password">Email</label>
                                 <p
                                     class="flex justify-center border-0 px-3 py-3 text-gray-700 bg-slate-100 rounded text-md shadow focus:outline-none focus:ring w-full font-bold">
-                                    <%=allData.user[0].email %>
+                                    <%=allData.user.email %>
                                 </p>
 
                             </div>
@@ -48,14 +46,14 @@
                                     Number</label>
                                 <p
                                     class="flex justify-center border-0 px-3 py-3 text-gray-700 bg-slate-100 rounded text-md shadow focus:outline-none focus:ring w-full font-bold">
-                                    <%=allData.user[0].UserDetail.phoneNumber %>
+                                    <%=allData.user.UserDetail.phoneNumber %>
                                 </p>
                             </div>
                             <div class="relative w-full mb-3">
                                 <label class="block uppercase text-gray-700 text-xs font-bold mb-2">Umur :</label>
                                 <p
                                     class="flex justify-center border-0 px-3 py-3 text-gray-700 bg-slate-100 rounded text-md shadow focus:outline-none focus:ring w-full font-bold">
-                                    <%=allData.user[0].UserDetail.age %>
+                                    <%=allData.user.UserDetail.age %>
                                 </p>
                             </div>
 
@@ -63,7 +61,7 @@
                                 <label class="block uppercase text-gray-700 text-xs font-bold mb-2">Role :</label>
                                 <p
                                     class="flex justify-center border-0 px-3 py-3 text-gray-700 bg-slate-100 rounded text-md shadow focus:outline-none focus:ring w-full font-bold">
-                                    <%=allData.user[0].role %>
+                                    <%=allData.user.role %>
                                 </p>
                             </div>
 
@@ -71,19 +69,19 @@
                                 <label class="block uppercase text-gray-700 text-xs font-bold mb-2">Account Id :</label>
                                 <p
                                     class="flex justify-center border-0 px-3 py-3 text-gray-700 bg-slate-100 rounded text-md shadow focus:outline-none focus:ring w-full font-bold">
-                                    <%=allData.user[0].UserDetail.accountId.slice(20,40) %>
+                                    <%=allData.user.UserDetail.accountId.slice(20,40) %>
                                 </p>
                             </div>
                             <div class="relative w-full mb-3">
                                 <label class="block uppercase text-gray-700 text-xs font-bold mb-2">Transaction History
                                     :</label>
-                                <% if (allData.user[0].Histories.length==0) { %>
+                                <% if (allData.user.Histories.length==0) { %>
                                     <p
                                         class="flex justify-center border-0 px-3 py-1 mt-3 text-gray-700 bg-slate-100 rounded text-md shadow focus:outline-none focus:ring w-full font-bold">
                                         No Transaction
                                     </p>
                                     <% }else { %>
-                                        <% allData.user[0].Histories.forEach(x=> { %>
+                                        <% allData.user.Histories.forEach(x=> { %>
                                             <p
                                                 class="flex justify-center border-0 px-3 py-1 mt-3 text-gray-700 bg-slate-100 rounded text-md shadow focus:outline-none focus:ring w-full font-normal">
                                                 <%= x.createdAt.toUTCString() %>

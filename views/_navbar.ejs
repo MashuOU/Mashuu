@@ -7,18 +7,20 @@
                     Tokek.Pedia
                 </p>
                 <li><a class="hover:text-gray-200 hover:underline px-4" href="/product/category">Categories</a></li>
-                <li><a class="hover:text-gray-200 hover:underline px-4" href="/product">All-Product</a></li>
+                <li><a class="hover:text-gray-200 hover:underline px-4" href="/product?user=<%= currentUserName %>">All-Product</a></li>
             </ul>
         </nav>
 
         <div class="flex items-center  no-underline text-white">
             <div class="flex items-center text-lg">
                 <p class=" pr-2 text-sm pt-1"> Hello</p>
-                <a href="/user/detail" class="text-decoration-line: underline">username</a>
+                <a href="/user/detail" class="text-decoration-line: underline">
+                    <%= currentUserName %>
+                </a>
             </div>
 
             <div class="pl-10">
-                <a href="/logout" class="text-decoration-line: underline text-sm font-extralight">log out</a>
+                <a href="/logout" class="text-decoration-line: text-sm font-extralight">log out</a>
 
             </div>
         </div>

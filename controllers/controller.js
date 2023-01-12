@@ -3,6 +3,8 @@ const { Op } = require("sequelize");
 const QRCode = require('qrcode')
 const { rupiah, convert } = require('../helpers/helper')
 
+let currentUserName = ''
+
 class Controller {
     static home(req, res) {
         // res.send('Ini home untuk Log In')
@@ -12,13 +14,13 @@ class Controller {
 
     static validasi(req, res) {
         const { username, password } = req.body
-
         User.findAll({ where: { userName: username, password } })
             .then((data) => {
                 if (data.length == 0) {
                     res.redirect('/?err=validation')
                 } else {
-                    res.redirect('/product')
+                    currentUserName = username
+                    res.redirect(`/product`)
                 }
 
             })
@@ -46,7 +48,7 @@ class Controller {
                 // res.send(data)
                 return UserDetail.create({ firstName, lastName, address, phoneNumber, dateOfBirth, UserId: accountId.id })
             })
-            .then(() => res.redirect('/product'))
+            .then(() => res.redirect('/'))
             .catch(err => {
                 if (err.name == 'SequelizeValidationError') {
                     const errors = err.errors.map(el => el.message)
@@ -59,27 +61,30 @@ class Controller {
 
     static userDetail(req, res) {
         let allData = {}
-        User.findAll({
+        User.findOne({
+            where: { userName: currentUserName },
             include: [UserDetail, History]
         })
             .then(data => {
+                // res.send(data)
                 allData.user = data
-                return QRCode.toDataURL(data[0].userName + data[0].dateOfBirth + data[0].email)
+                return QRCode.toDataURL(data.userName + data.dateOfBirth + data.email)
             })
             .then(url => {
                 allData.url = url
-                res.render('user-detail', { allData, convert })
+                res.render('user-detail', { allData, convert, currentUserName })
             })
             .catch(err => res.send(err))
     }
 
     static product(req, res) {
-        let { userId } = req.query
-
         let allData = {}
         let option = {}
-        const { search, look } = req.query
 
+        const { search, look, user } = req.query
+        if (user !== undefined) currentUserName = user
+
+        // console.log(user, currentUserName)
         //search by product title
         if (look) option = { where: { name: { [Op.iLike]: `%${look}%` } } }
         if (search) option = { where: { CategoryId: search } }
@@ -94,7 +99,7 @@ class Controller {
             .then(category => {
                 allData.category = category
                 // res.send(allData)
-                res.render('products', { allData, rupiah })
+                res.render('products', { allData, rupiah, currentUserName })
             })
             .catch(err => res.send(err))
     } //! DONE
@@ -113,7 +118,10 @@ class Controller {
                 }
             })
             .then(() => {
-                return History.create({ ProductId: id, UserId: 1 })
+                return User.findOne({ where: { userName: currentUserName } })
+            })
+            .then((dataUser) => {
+                return History.create({ ProductId: id, UserId: dataUser.id })
             })
             .then(() => res.redirect('/product'))
             .catch(err => {
@@ -127,16 +135,13 @@ class Controller {
     }
 
     static productCategory(req, res) {
-        // res.send('Ini ngesort product based on category, nanti isinya cuma jumlah product di category tsb dengan eager loading')
         Category.findAll()
             // .then(data => res.send(data))
-            .then(data => res.render('category', { data }))
+            .then(data => res.render('category', { data, currentUserName }))
             .catch(err => {
                 res.send(err)
             })
     }
-
-
 }
 
 module.exports = Controller
