@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>User Detail</title>
+</head>
+
+<body>
+    <%- include('_navbar') %>
+        <div class="pt-12 text-green-500 ">
+            <h1 class="flex justify-center  text-6xl font-bold pb-16 ">User Detail</h1>
+            <div class=" flex justify-center  text-6xl font-bold pb-16 ">
+                <img src="<%=allData.url %> " width="200" height="200" alt="img">
+            </div>
+        </div>
+
+
+
+        <div class="container m-auto px-4 h-full pb-20">
+            <div class="flex content-center items-center justify-center h-full">
+                <div class="w-full lg:w-4/12 px-4">
+                    <div
+                        class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-green-200 border-0">
+                        <form class="flex-auto px-4 lg:px-10 py-10" action="/user/edit" method="post">
+                            <div class="relative w-full mb-3">
+                                <label class="block uppercase text-gray-700 text-xs font-bold mb-2">Username :</label>
+                                <p
+                                    class="flex justify-center border-0 px-3 py-3 text-gray-700 bg-slate-100 rounded text-md shadow focus:outline-none focus:ring w-full font-bold">
+                                    <%=allData.user[0].userName %>
+                                </p>
+                            </div>
+                            <div class="relative w-full mb-3 ">
+                                <label class="block uppercase text-gray-700 text-xs font-bold mb-2 "
+                                    for="grid-password">Email</label>
+                                <p
+                                    class="flex justify-center border-0 px-3 py-3 text-gray-700 bg-slate-100 rounded text-md shadow focus:outline-none focus:ring w-full font-bold">
+                                    <%=allData.user[0].email %>
+                                </p>
+
+                            </div>
+
+                            <div class="relative w-full mb-3">
+                                <label class="block uppercase text-gray-700 text-xs font-bold mb-2">Phone
+                                    Number</label>
+                                <p
+                                    class="flex justify-center border-0 px-3 py-3 text-gray-700 bg-slate-100 rounded text-md shadow focus:outline-none focus:ring w-full font-bold">
+                                    <%=allData.user[0].UserDetail.phoneNumber %>
+                                </p>
+                            </div>
+                            <div class="relative w-full mb-3">
+                                <label class="block uppercase text-gray-700 text-xs font-bold mb-2">Umur :</label>
+                                <p
+                                    class="flex justify-center border-0 px-3 py-3 text-gray-700 bg-slate-100 rounded text-md shadow focus:outline-none focus:ring w-full font-bold">
+                                    <%=allData.user[0].UserDetail.age %>
+                                </p>
+                            </div>
+
+                            <div class="relative w-full mb-3">
+                                <label class="block uppercase text-gray-700 text-xs font-bold mb-2">Role :</label>
+                                <p
+                                    class="flex justify-center border-0 px-3 py-3 text-gray-700 bg-slate-100 rounded text-md shadow focus:outline-none focus:ring w-full font-bold">
+                                    <%=allData.user[0].role %>
+                                </p>
+                            </div>
+
+                            <div class="relative w-full mb-3">
+                                <label class="block uppercase text-gray-700 text-xs font-bold mb-2">Account Id :</label>
+                                <p
+                                    class="flex justify-center border-0 px-3 py-3 text-gray-700 bg-slate-100 rounded text-md shadow focus:outline-none focus:ring w-full font-bold">
+                                    <%=allData.user[0].UserDetail.accountId.slice(20,40) %>
+                                </p>
+                            </div>
+
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="w-full border-t bg-green-500 text-white">
+            <div class="w-full container mx-auto flex flex-col items-center">
+                <div class="flex flex-col md:flex-row text-center md:text-left md:justify-between py-6">
+                    <a href="#" class="uppercase px-3">About Us</a>
+                    <a href="#" class="uppercase px-3">Privacy Policy</a>
+                    <a href="#" class="uppercase px-3">Terms & Conditions</a>
+                    <a href="#" class="uppercase px-3">Contact Us</a>
+                </div>
+                <div class="uppercase pb-6 ">TokekPedia.com</div>
+            </div>
+        </footer>
+</body>
+
+</html>

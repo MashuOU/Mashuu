@@ -14,6 +14,15 @@ module.exports = (sequelize, DataTypes) => {
       Product.belongsTo(models.Category)
       Product.hasMany(models.History)
     }
+
+    statusStock() {
+      let status = 0
+      if (this.stock > 0) status = 'available'
+      if (this.stock = 0) status = 'out of stock'
+      return status
+    }
+
+
   }
   Product.init({
     name: DataTypes.STRING,

@@ -1,10 +1,12 @@
 const { Category, Product, History, User, UserDetail } = require('../models/index')
 const { Op } = require("sequelize");
+const QRCode = require('qrcode')
+const rupiah = require('../helpers/helper')
 
 class Controller {
     static home(req, res) {
         // res.send('Ini home untuk Log In')
-        res.render('homepage')
+        res.render('home')
     }
 
     static logout(req, res) {
@@ -15,7 +17,7 @@ class Controller {
     static addUser(req, res) {
         // res.send('Ini nanti form add user')
         const { errors } = req.query
-        res.render('addUser', { errors })
+        res.render('add-user', { errors })
     } //! Done
 
     static createUser(req, res) {
@@ -25,9 +27,9 @@ class Controller {
         User.create({ userName, email, password, role })
             .then(data => {
                 accountId.id = data.id
+                // res.send(data)
                 return UserDetail.create({ firstName, lastName, address, phoneNumber, dateOfBirth, UserId: accountId.id })
             })
-            // .then(data => res.send(data))
             .then(() => res.redirect('/product'))
             .catch(err => {
                 if (err.name == 'SequelizeValidationError') {
@@ -40,40 +42,43 @@ class Controller {
     } //! DONE
 
     static userDetail(req, res) {
-        // res.send('Ini nampilin detail user')
+        let allData = {}
         User.findAll({
             include: [UserDetail, History]
         })
-            // .then(data => res.send(data))
             .then(data => {
-                res.render('userDetail', { data })
+                allData.user = data
+                return QRCode.toDataURL(data[0].userName)
             })
-            .catch(err => {
-                res.send(err)
+            .then(url => {
+                allData.url = url
+                // res.send(allData)
+                res.render('user-detail', { allData })
             })
+            .catch(err => res.send(err))
     }
 
     static product(req, res) {
-        // res.send('Ini nampilin list product')
-        const { search } = req.query
-        const option = {
-            order: [['id', 'ASC']]
-        }
+        let allData = {}
+        let option = {}
+        const { search, look } = req.query
 
-        // if (search) {
-        //     option.where.name = {
-        //         [Op.iLike]: `%${search}%`
-        //     }
-        // } //! Masih belum berhasil buat search karena bentuknya array, jadi ga bisa langsung di tambahin option.where.name
+        //search by product title
+        if (look) option = { where: { name: { [Op.iLike]: `%${look}%` } } }
+        if (search) option = { where: { CategoryId: search } }
+        if (!look && !search) option = {}
 
         Product.findAll(option)
             .then(product => {
-                // res.send(product)
-                res.render('productPage', { product })
+                allData.product = product
+                return Category.findAll()
             })
-            .catch(err => {
-                res.send(err)
+            .then(category => {
+                allData.category = category
+                // res.send(allData)
+                res.render('products', { allData, rupiah })
             })
+            .catch(err => res.send(err))
     } //! DONE
 
     static buyProduct(req, res) {
@@ -105,10 +110,7 @@ class Controller {
     static productCategory(req, res) {
         // res.send('Ini ngesort product based on category, nanti isinya cuma jumlah product di category tsb dengan eager loading')
         Product.findAll()
-            .then(data => {
-                // res.send(data)
-                res.render('categoriesPage', { data })
-            })
+            .then(data => res.render('category', { data }))
             .catch(err => {
                 res.send(err)
             })

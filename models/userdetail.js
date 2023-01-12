@@ -13,6 +13,12 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       UserDetail.belongsTo(models.User)
     }
+
+    get age (){
+      const today = new Date().getFullYear()
+      const birth = this.dateOfBirth.getFullYear()
+      return (today - birth)
+    }
   }
   UserDetail.init({
     firstName: {
@@ -57,10 +63,16 @@ module.exports = (sequelize, DataTypes) => {
     },
     UserId: {
       type: DataTypes.INTEGER,
+    },
+    accountId: {
+      type: DataTypes.STRING,
     }
   }, {
     sequelize,
     modelName: 'UserDetail',
+  });
+  UserDetail.addHook('beforeCreate', (userdetail, options) => {
+    userdetail.accountId = `${userdetail.phoneNumber}-${userdetail.dateOfBirth}-tokek`;
   });
   return UserDetail;
 };
