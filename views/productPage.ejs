@@ -11,7 +11,8 @@
 
     <p>
         <button><a href="/user/add">Sign Up</a></button> |
-        <button><a href="/product/category">Category</a></button>
+        <button><a href="/product/category">Category</a></button> |
+        <button><a href="/user/detail">User Detail</a></button> 
     </p>
 
     <p>
@@ -32,6 +33,7 @@
                 <td>Category ID</td>
                 <td>Stock</td>
                 <td>Code</td>
+                <td>Action</td>
             </tr>
         </thead>
 
@@ -46,6 +48,7 @@
                     <td><%= el.CategoryId %> </td>
                     <td><%= el.stock %></td>
                     <td><%= el.code %></td>
+                    <td><button><a href="/product/buy/<%= el.id %>">Buy</a></button></td>
             </tr>
             <% }) %>
         </tbody>

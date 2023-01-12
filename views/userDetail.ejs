@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Detail</title>
+</head>
+<body>
+    <h1>User Detail</h1>
+    <table border="1">
+        <p>
+             <% data.forEach(el => { %>
+            Username: <%= el.userName %>
+            Email: <%= el.email %> 
+            Password: <%= el.password %> 
+            <% }) %>
+         </p>
+    </table>
+
+
+    <h1>Transaction History</h1>
+    
+</body>
+</html>
