@@ -33,6 +33,14 @@ class Controller {
             })
     }
 
+    static buyProduct(req, res) {
+        res.send('Ini untuk proses beli product')
+    }
+
+    static checkOutProduct(req, res) {
+        res.send('Ini untuk kirim data ke histories dari pembelian product')
+    }
+
     static productCategory(req, res) {
         res.send('Ini ngesort product based on category, nanti isinya cuma jumlah product di category tsb dengan eager loading')
     }
