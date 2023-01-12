@@ -12,13 +12,13 @@ module.exports = {
       userName: {
         type: Sequelize.STRING
       },
-      emai: {
+      email: {
         type: Sequelize.STRING
       },
       password: {
         type: Sequelize.STRING
       },
-      roles: {
+      role: {
         type: Sequelize.STRING
       },
       createdAt: {

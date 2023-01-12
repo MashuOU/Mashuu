@@ -1,0 +1,65 @@
+[
+    {
+        "name": "Sumpit Sakti",
+        "description": "sebuah sumpit legendaris dari dataran uganda, terbuat dari logam uru logam terkuat di bumi",
+        "price": 868686,
+        "CategoryId": 1,
+        "stock": 10,
+        "code": "sumpit-12321312312",
+        "imageURL": "https://s.yimg.com/ny/api/res/1.2/we8Cb1ang3f9Gx.uK6Xf.w--/YXBwaWQ9aGlnaGxhbmRlcjt3PTk2MDtoPTEyODA7Y2Y9d2VicA--/https://media.zenfs.com/id/liputan6_hosted_772/e31be1be59a60c2099dd2285c8519157"
+    },
+    {
+        "name": "Sempak Super",
+        "description": "konon di kabarkan sempak ini mampu menampung lumpur lapindo",
+        "price": 1456847,
+        "CategoryId": 2,
+        "stock": 10,
+        "code": "sem-12321312312",
+        "imageURL": "https://t-2.tstatic.net/jogja/foto/bank/images/celana-dalam-jumbo.jpg"
+    },
+    {
+        "name": "Bedak Magic bukan tisu magic",
+        "description": "sejenis gula gulaan yang ada di donut kentang pinggir pasar",
+        "price": 131321,
+        "CategoryId": 2,
+        "stock": 10,
+        "code": "bedak-12321312312",
+        "imageURL": "https://cdn0-production-images-kly.akamaized.net/wfAyN3m8WcmpCN5hGifaAHP1Tu8=/640x640/smart/filters:quality(75):strip_icc():format(jpeg)/kly-media-production/medias/3547908/original/047417300_1629685093-1001995-bocah-pakai-bedak-kocak.jpg"
+    },
+    {
+        "name": "Bakso aci tulang kelingking haji yohanes",
+        "description": "aroma dan rasanya kenyel2 benyek serta kuah kecoklat-coklatan yang membuat anda tersugesti",
+        "price": 12315,
+        "CategoryId": 2,
+        "stock": 12,
+        "code": "bakso-12321312312",
+        "imageURL": "https://cdns.klimg.com/resized/660x/g/m/a/makanan_ini_disajikan_dengan_cara_nyeleneh_bikin_gak_doyan/makanandiwadahnjijiki-20170314-001-rita.jpg"
+    },
+    {
+        "name": "masker anti sesak tapi tidak anti covid",
+        "description": "style dan kenyamanan nomer 1, kesehatan nomer 3 setelah udut",
+        "price": 12315,
+        "CategoryId": 1,
+        "stock": 12,
+        "code": "mask-12321312312",
+        "imageURL": "https://cdn.idntimes.com/content-images/community/2020/12/fromandroid-4bc13614413fa251b411fbe41a0cbe82_600x400.jpg"
+    },
+    {
+        "name": "mangkuk emas",
+        "description": "sebuah mangkuk yang konon di percaya bisa menghentikan hujan bila di getokan ke kepala pawangnya",
+        "price": 12315,
+        "CategoryId": 3,
+        "stock": 12,
+        "code": "mangkok-12321312312",
+        "imageURL": "https://cdn2.tstatic.net/newsmaker/foto/bank/images/harga-mangkuk-emas-rara-isti-wulandari-sang-pawang-hujan-fantastis.jpg"
+    },
+    {
+        "name": "Boneka Salju pemeras ruko",
+        "description": "konon legenda nya jenglot ini bisa menjadi pengelaris bagi pemilik ruko kosong",
+        "price": 66666,
+        "CategoryId": 2,
+        "stock": 12,
+        "code": "mixue-12321312312",
+        "imageURL": "https://cdn.idntimes.com/content-images/community/2022/12/whatsapp-image-2022-12-28-at-213907-96c643083b5e2021517d88d0c59b613c-3c2da868242126620817d8ab867decec_600x400.jpeg"
+    }
+]

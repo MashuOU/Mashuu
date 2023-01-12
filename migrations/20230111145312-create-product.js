@@ -18,21 +18,21 @@ module.exports = {
       price: {
         type: Sequelize.INTEGER
       },
-      stock: {
-        type: Sequelize.INTEGER
-      },
-      code: {
-        type: Sequelize.INTEGER
-      },
-      imageURL: {
-        type: Sequelize.STRING
-      },
       CategoryId: {
         type: Sequelize.INTEGER,
         references: {
           model: 'Categories',
           key: 'id'
         }
+      },
+      stock: {
+        type: Sequelize.INTEGER
+      },
+      code: {
+        type: Sequelize.STRING
+      },
+      imageURL: {
+        type: Sequelize.STRING
       },
       createdAt: {
         allowNull: false,

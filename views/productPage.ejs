@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product</title>
+</head>
+<body>
+    <h1>List of All Product</h1>
+
+    <p>
+        <button><a href="/user/add">Sign Up</a></button> |
+        <button><a href="/product/category">Category</a></button>
+    </p>
+
+    <p>
+        <form action="/product" method="get">
+            <input type="search" name="search" id="">
+            <input type="submit" value="Search" id="">
+        </form>
+    </p>
+    
+    <table border="1">
+        <thead>
+            <tr>
+                <td>Image</td>
+                <td>ID</td>
+                <td>Name</td>
+                <td>Description</td>
+                <td>Price</td>
+                <td>Category ID</td>
+                <td>Stock</td>
+                <td>Code</td>
+            </tr>
+        </thead>
+
+        <tbody>
+            <% product.forEach(el => { %>                 
+            <tr>
+                <td><img src="<%= el.imageURL %>" alt="" width="200"></td>
+                    <td><%= el.id %> </td>
+                    <td><%= el.name %> </td>
+                    <td><%= el.description %> </td>
+                    <td><%= el.price %></td>
+                    <td><%= el.CategoryId %> </td>
+                    <td><%= el.stock %></td>
+                    <td><%= el.code %></td>
+            </tr>
+            <% }) %>
+        </tbody>
+    </table>
+    
+</body>
+</html>

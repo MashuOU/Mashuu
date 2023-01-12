@@ -1,0 +1,14 @@
+[
+    {
+        "userName": "bams",
+        "email": "bams@mail.com",
+        "password": "qwertyu",
+        "role": "seller"
+    },
+    {
+        "userName": "sums",
+        "email": "sums@mail.com",
+        "password": "123456789",
+        "role": "buyer"
+    }
+]
