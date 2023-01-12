@@ -4,7 +4,7 @@
         "description": "Ini blender pokoknya mah",
         "price": 868686,
         "CategoryId": 1,
-        "stock": 10,
+        "stockBarang": 10,
         "code": "blender-12321312312",
         "imageURL": "https://images.tokopedia.net/img/cache/500-square/VqbcmM/2022/1/9/a6874fe0-a828-4a83-8ab5-e12da38c046a.jpg"
     },
@@ -13,7 +13,7 @@
         "description": "Garpu temennya sendok",
         "price": 1456847,
         "CategoryId": 1,
-        "stock": 10,
+        "stockBarang": 10,
         "code": "garpu-12321312312",
         "imageURL": "https://images.tokopedia.net/img/cache/500-square/hDjmkQ/2021/11/30/357ab27f-a895-4973-bcc9-a906c978e0c5.jpg"
     },
@@ -22,7 +22,7 @@
         "description": "Ini kotak aja, makanannya beli sendiri",
         "price": 131321,
         "CategoryId": 1,
-        "stock": 10,
+        "stockBarang": 10,
         "code": "kotak-12321312312",
         "imageURL": "https://sc04.alicdn.com/kf/H48346c58dea34684b7e68367da4077b8k.jpg"
     },
@@ -31,7 +31,7 @@
         "description": "Piring cantik, tapi tetep kamu yang lebih cantik kok",
         "price": 12315,
         "CategoryId": 1,
-        "stock": 12,
+        "stockBarang": 12,
         "code": "piring-12321312312",
         "imageURL": "https://cf.shopee.co.id/file/cd4e38c0c53ab9f5ac406b23057072ad"
     },
@@ -40,7 +40,7 @@
         "description": "Jaket biar gak masuk angin",
         "price": 1243295,
         "CategoryId": 2,
-        "stock": 12,
+        "stockBarang": 12,
         "code": "jaket-12321312312",
         "imageURL": "https://images.tokopedia.net/img/cache/500-square/VqbcmM/2021/1/23/a6c4429d-dae8-4583-88a0-8cd163409ebc.jpg"
     },
@@ -49,7 +49,7 @@
         "description": "Pokoknya celana jeans",
         "price": 89998,
         "CategoryId": 2,
-        "stock": 12,
+        "stockBarang": 12,
         "code": "celana-12321312312",
         "imageURL": "https://id-live-01.slatic.net/p/8e98f16efde1a62876d07e057049cc2e.jpg"
     },
@@ -58,7 +58,7 @@
         "description": "Kaos polos stiket the beatles",
         "price": 565443,
         "CategoryId": 2,
-        "stock": 12,
+        "stockBarang": 12,
         "code": "kaos-12321312312",
         "imageURL": "https://images.tokopedia.net/img/cache/500-square/product-1/2019/4/25/51897000/51897000_8edf63b1-1489-42c6-adfc-a89c515e5986_976_976.jpg"
     },
@@ -67,7 +67,7 @@
         "description": "Laptop taun kapan ga tau",
         "price": 10456777,
         "CategoryId": 3,
-        "stock": 12,
+        "stockBarang": 12,
         "code": "laptop-12321312312",
         "imageURL": "https://www.lifewire.com/thmb/8w3vWWp8d1jc2-kX-c8lwK8Eq_I=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/RazorBlade15_GamingLaptop_front-HERO_Square-3a050fc8350d4109b64e85c57a6c15c5.jpg"
     },
@@ -76,7 +76,7 @@
         "description": "Pelindung hp, namanya case",
         "price": 57000,
         "CategoryId": 3,
-        "stock": 12,
+        "stockBarang": 12,
         "code": "case-12321312312",
         "imageURL": "https://lzd-img-global.slatic.net/g/p/e014eac2fb591106a48e375c3307cc07.jpg_720x720q80.jpg_.webp"
     },
@@ -85,7 +85,7 @@
         "description": "Ini ikan namanya cu-pang",
         "price": 68999,
         "CategoryId": 3,
-        "stock": 12,
+        "stockBarang": 12,
         "code": "ikan-12321312312",
         "imageURL": "https://images.tokopedia.net/img/cache/500-square/VqbcmM/2022/1/13/7a8b66fb-220f-4a46-ac9d-16fdb380aec9.jpg"
     },
@@ -94,7 +94,7 @@
         "description": "Keyboard enak di pake ngetik",
         "price": 1575555,
         "CategoryId": 3,
-        "stock": 12,
+        "stockBarang": 12,
         "code": "keyboard-12321312312",
         "imageURL": "https://pyxis.nymag.com/v1/imgs/96d/4db/798cb233daec1e5daf7de4d0fddf7ee33a-ode-keyboard.rsquare.w1200.jpg"
     },
@@ -103,7 +103,7 @@
         "description": "Pokoknya kaktusk",
         "price": 90899,
         "CategoryId": 3,
-        "stock": 12,
+        "stockBarang": 12,
         "code": "kaktus-12321312312",
         "imageURL": "http://sc04.alicdn.com/kf/H5372242306f34dafafd6d4ef89b3ed5aL.jpg"
     }

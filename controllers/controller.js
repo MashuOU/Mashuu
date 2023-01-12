@@ -1,14 +1,30 @@
 const { Category, Product, History, User, UserDetail } = require('../models/index')
 const { Op } = require("sequelize");
 const QRCode = require('qrcode')
-const rupiah = require('../helpers/helper')
+const { rupiah, convert } = require('../helpers/helper')
 
 class Controller {
     static home(req, res) {
         // res.send('Ini home untuk Log In')
-        res.render('home')
+        const { err } = req.query
+        res.render('home', { err })
     }
 
+    static validasi(req, res) {
+        const { username, password } = req.body
+
+        User.findAll({ where: { userName: username, password } })
+            .then((data) => {
+                if (data.length == 0) {
+                    res.redirect('/?err=validation')
+                } else {
+                    res.redirect('/product')
+                }
+
+            })
+            .catch(() => res.send('error sat'))
+
+    }
     static logout(req, res) {
         // res.send('Ini log out')
         res.redirect('/')
@@ -48,17 +64,18 @@ class Controller {
         })
             .then(data => {
                 allData.user = data
-                return QRCode.toDataURL(data[0].userName)
+                return QRCode.toDataURL(data[0].userName + data[0].dateOfBirth + data[0].email)
             })
             .then(url => {
                 allData.url = url
-                // res.send(allData)
-                res.render('user-detail', { allData })
+                res.render('user-detail', { allData, convert })
             })
             .catch(err => res.send(err))
     }
 
     static product(req, res) {
+        let { userId } = req.query
+
         let allData = {}
         let option = {}
         const { search, look } = req.query
@@ -71,6 +88,7 @@ class Controller {
         Product.findAll(option)
             .then(product => {
                 allData.product = product
+                // res.send(product[0].description)
                 return Category.findAll()
             })
             .then(category => {
@@ -84,17 +102,18 @@ class Controller {
     static buyProduct(req, res) {
         // res.send('Ini untuk proses beli product')
         const { id } = req.params
+        // res.send(id)
         Product.findByPk(id)
             .then(data => {
                 // res.send(data)
-                if (data.stock > 0) {
-                    return Product.decrement({ stock: +1 }, { where: { id: id } })
+                if (data.stockBarang > 0) {
+                    return Product.decrement({ stockBarang: +1 }, { where: { id: id } })
                 } else {
                     throw "Stock error"
                 }
             })
             .then(() => {
-                return History.create({ ProductId: id, UserId: 2 })
+                return History.create({ ProductId: id, UserId: 1 })
             })
             .then(() => res.redirect('/product'))
             .catch(err => {
@@ -109,12 +128,15 @@ class Controller {
 
     static productCategory(req, res) {
         // res.send('Ini ngesort product based on category, nanti isinya cuma jumlah product di category tsb dengan eager loading')
-        Product.findAll()
+        Category.findAll()
+            // .then(data => res.send(data))
             .then(data => res.render('category', { data }))
             .catch(err => {
                 res.send(err)
             })
     }
+
+
 }
 
 module.exports = Controller

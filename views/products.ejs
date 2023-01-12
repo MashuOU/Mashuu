@@ -91,11 +91,27 @@
             </div>
         </header>
 
-        <!-- Topic Nav -->
+        <!-- search Section -->
+        <nav class="flex justify-center mx-20  " x-data="{ open: false }">
+            <p class="px-12 py-3">
+                <form action="/product" method="get" class="flex">
+                    <div
+                    class="shadow appearance-none border  border-green-400  rounded-3xl w-full px-20 py-0.5 text-gray-700 mb-3 ">
+                    <input type="search" name="look" placeholder="Search By Title">
+                </div>
+                <div>
+                    <input type="submit" value="Search" class="px-5 rounded-full ml-5  py-1">
+                </div>
+            </form>
+            </p>
+        </nav>
+
+
+        <!-- category  -->
         <nav class="w-full py-4 border-t border-b bg-gray-100" x-data="{ open: false }">
             <div class="block sm:hidden">
                 <a href="#"
-                    class="block md:hidden text-base font-bold uppercase text-center flex justify-center items-center"
+                    class=" md:hidden text-base font-bold uppercase text-center flex justify-center items-center"
                     @click="open = !open">
                     Topics <i :class="open ? 'fa-chevron-down': 'fa-chevron-up'" class="fas ml-2"></i>
                 </a>
@@ -117,82 +133,69 @@
         </nav>
 
         <div class="container mx-auto flex flex-wrap py-6">
+
             
             <!-- Post Section -->
-            
             <section class="w-full md:w-2/3 flex flex-col items-center px-3">
-                <p class="px-4 py-3">
-                <form action="/product" method="get">
-                    <input type="search" name="look" id="">
-                    <input type="submit" value="Search" id="">
-                </form>
-                </p>
 
-                <article class="flex flex-col shadow my-4">
-                    <section class="bg-white py-8">
+                <article class="flex flex-col shadow my-4 border  border-green-400">
+                    <section class="bg-white py-8 ">
 
-                        <div class="container mx-auto flex items-center flex-wrap pt-4 pb-2">
+                        <div class="container mx-auto flex items-center flex-wrap pt-4 pb-2  ">
                             <!-- product card -->
                             <% allData.product.forEach(x=> { %>
-                                <div class="w-full md:w-1/3 xl:w-1/4 p-6 flex flex-col">
+                                <div class="w-full md:w-1/3 xl:w-1/4 p-6 flex flex-col ">
 
                                     <a href="#">
-                                        <img class="hover:grow hover:shadow-lg" src="<%=x.imageURL%>" width="150"
-                                            height="150">
+                                        <img class=" shadow-lg hover:grow hover:shadow-2xl" src="<%=x.imageURL%>"
+                                            width="150" height="150">
                                         <div class="pt-3 flex items-center justify-between">
                                             <p class="">
                                                 <%=x.name %>
                                             </p>
                                         </div>
-                                        <div class="py-1 text-green-600 font-bold">
-                                            <%= x.statusStock() %>
-                                        </div>
-                                        <p class="pt-1 text-gray-900">
+
+                                        <p class="pt-1 text-gray-500 font-thin text-lg pb-2 hover:text-gray-900">
                                             <%= rupiah( x.price) %>
                                         </p>
+                                        <% if (x.stockBarang> 0 ) { %>
+
+                                            <div class=" text-green-600 font-bold hover:grow">
+                                                <%= x.statusStock() %>
+                                                    <a class="pl-3 inline-block no-underline hover:text-black "
+                                                        href="/product/buy/<%=x.id%>">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                            fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
+                                                            <path
+                                                                d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+                                                        </svg>
+                                                    </a>
+                                            </div>
+
+                                            <% }else { %>
+                                                <div class=" text-red-600 font-bold hover:grow">
+                                                    <%= x.statusStock() %>
+                                                        <a class="pl-3 inline-block no-underline hover:text-black"
+                                                            href="/product/buy/<%=x.id%>">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                                height="16" fill="currentColor" class="bi bi-cart"
+                                                                viewBox="0 0 16 16">
+                                                                <path
+                                                                    d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+                                                            </svg>
+                                                        </a>
+                                                </div>
+
+                                                <%} %>
+
+
+                                                    <p class=" text-gray-900">
+                                                        <%= x.stockBarang %> pcs
+                                                    </p>
                                     </a>
                                 </div>
                                 <% }) %>
-
-                                    <div class="w-full md:w-1/3 xl:w-1/4 p-6 flex flex-col">
-                                        <a href="#">
-                                            <img class="hover:grow hover:shadow-lg"
-                                                src="https://images.unsplash.com/photo-1508423134147-addf71308178?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&h=400&q=80">
-                                            <div class="pt-3 flex items-center justify-between">
-                                                <p class="">Product Name</p>
-
-                                            </div>
-                                            <p class="pt-1 text-gray-900">£9.99</p>
-                                        </a>
-                                    </div>
-
-                                    <div class="w-full md:w-1/3 xl:w-1/4 p-6 flex flex-col">
-                                        <a href="#">
-                                            <img class="hover:grow hover:shadow-lg"
-                                                src="https://images.unsplash.com/photo-1449247709967-d4461a6a6103?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&h=400&q=80">
-                                            <div class="pt-3 flex items-center justify-between">
-                                                <p class="">Product Name</p>
-
-                                            </div>
-                                            <p class="pt-1 text-gray-900">£9.99</p>
-                                        </a>
-                                    </div>
-
-                                    <div class="w-full md:w-1/3 xl:w-1/4 p-6 flex flex-col">
-                                        <a href="#">
-                                            <img class="hover:grow hover:shadow-lg"
-                                                src="https://images.unsplash.com/reserve/LJIZlzHgQ7WPSh5KVTCB_Typewriter.jpg?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&h=400&q=80">
-                                            <div class="pt-3 flex items-center justify-between">
-                                                <p class="">Product Name</p>
-
-                                            </div>
-                                            <p class="pt-1 text-gray-900">£9.99</p>
-                                        </a>
-                                    </div>
-
-
                         </div>
-
                     </section>
 
 
@@ -203,13 +206,13 @@
             </section>
 
             <!-- Sidebar Section -->
-            <aside class="w-full md:w-1/3 flex flex-col items-center px-3">
-                <div class="w-full bg-white shadow flex flex-col my-4 p-6">
+            <aside class="w-full md:w-1/3 flex flex-col items-center px-3 ">
+                <div class="w-full bg-white shadow flex flex-col my-4 p-6 border  border-green-400">
                     <p class="text-xl font-semibold pb-5">lihat juga</p>
                     <div class="grid grid-cols-3 gap-3 ">
                         <a href="">
                             <img class="hover:grow hover:shadow-lg bg-cover"
-                                src="https://images.unsplash.com/photo-1550837368-6594235de85c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&h=400&q=80"
+                                src="https://images.unsplash.com/photo-1508423134147-addf71308178?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&h=400&q=80"
                                 alt="">
                         </a>
                         <img class="hover:grow hover:shadow-lg bg-cover"
@@ -217,19 +220,19 @@
                             alt="">
                         </a>
                         <img class="hover:grow hover:shadow-lg bg-cover"
-                            src="https://images.unsplash.com/photo-1550837368-6594235de85c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&h=400&q=80"
+                            src="https://images.unsplash.com/reserve/LJIZlzHgQ7WPSh5KVTCB_Typewriter.jpg?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&h=400&q=80"
                             alt="">
                         </a>
 
                     </div>
 
                 </div>
-                <div class="w-full bg-white shadow flex flex-col my-4 p-6">
+                <div class="w-full bg-white shadow flex flex-col my-4 p-6 border  border-green-400">
                     <p class="text-xl font-semibold pb-5">hot products</p>
                     <div class="grid grid-cols-3 gap-3">
                         <a href="">
                             <img class="hover:grow hover:shadow-lg bg-cover"
-                                src="https://images.unsplash.com/photo-1550837368-6594235de85c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&h=400&q=80"
+                                src="https://images.unsplash.com/photo-1508423134147-addf71308178?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&h=400&q=80"
                                 alt="">
                         </a>
                         <img class="hover:grow hover:shadow-lg bg-cover"
@@ -237,7 +240,7 @@
                             alt="">
                         </a>
                         <img class="hover:grow hover:shadow-lg bg-cover"
-                            src="https://images.unsplash.com/photo-1550837368-6594235de85c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&h=400&q=80"
+                            src="https://images.unsplash.com/reserve/LJIZlzHgQ7WPSh5KVTCB_Typewriter.jpg?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&h=400&q=80"
                             alt="">
                         </a>
 

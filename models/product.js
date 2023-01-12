@@ -16,12 +16,19 @@ module.exports = (sequelize, DataTypes) => {
     }
 
     statusStock() {
-      let status = 0
-      if (this.stock > 0) status = 'available'
-      if (this.stock = 0) status = 'out of stock'
-      return status
+      if (this.stockBarang > 0) {
+        return 'available'
+      }else {
+        return 'out of stock'
+      }
+        
+
     }
 
+    get totalstock() {
+      console.log(this.stockBarang);
+      return this.stock
+    }
 
   }
   Product.init({
@@ -29,7 +36,7 @@ module.exports = (sequelize, DataTypes) => {
     description: DataTypes.STRING,
     price: DataTypes.INTEGER,
     CategoryId: DataTypes.INTEGER,
-    stock: DataTypes.INTEGER,
+    stockBarang: DataTypes.INTEGER,
     code: DataTypes.STRING,
     imageURL: DataTypes.STRING,
   }, {
