@@ -2,6 +2,7 @@ const { Category, Product, History, User, UserDetail } = require('../models/inde
 const { Op } = require("sequelize");
 const QRCode = require('qrcode')
 const { rupiah, convert } = require('../helpers/helper')
+const bcrypt = require('bcryptjs')
 
 let currentUserName = ''
 
@@ -14,19 +15,27 @@ class Controller {
 
     static validasi(req, res) {
         const { username, password } = req.body
-        User.findAll({ where: { userName: username, password } })
-            .then((data) => {
-                if (data.length == 0) {
-                    res.redirect('/?err=validation')
+        User.findOne({ where: { userName: username } })
+            .then(user => {
+                if (user) {
+                    // res.send(req.body)
+                    const isValidPassword = bcrypt.compareSync(password, user.password)
+
+                    if (isValidPassword) {
+                        currentUserName = username
+                        return res.redirect('/product')
+                    } else {
+                        const error = 'invalid username/password'
+                        return res.redirect(`/?err=${error}`)
+                    }
                 } else {
-                    currentUserName = username
-                    res.redirect(`/product`)
+                    const error = 'invalid username/password'
+                    return res.redirect(`/?err=${error}`)
                 }
-
             })
-            .catch(() => res.send('error sat'))
-
+            .catch(err => res.send("err"))
     }
+
     static logout(req, res) {
         // res.send('Ini log out')
         res.redirect('/')
