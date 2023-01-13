@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
       UserDetail.belongsTo(models.User)
     }
 
-    get age (){
+    get age() {
       const today = new Date().getFullYear()
       const birth = this.dateOfBirth.getFullYear()
       return (today - birth)
@@ -58,7 +58,11 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       validate: {
         notNull: { msg: 'DOB is required' },
-        notEmpty: { msg: 'DOB Name is required' },
+        notEmpty: { msg: 'DOB is required' },
+        // isAfter: {
+        //   args: new Date(),
+        //   msg: 'DOB must be less than today'
+        // }
       }
     },
     UserId: {
