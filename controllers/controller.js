@@ -2,34 +2,59 @@ const { Category, Product, History, User, UserDetail } = require('../models/inde
 const { Op } = require("sequelize");
 const QRCode = require('qrcode')
 const { rupiah, convert } = require('../helpers/helper')
+const bcrypt = require('bcryptjs')
 
 let currentUserName = ''
 
 class Controller {
     static home(req, res) {
         // res.send('Ini home untuk Log In')
+<<<<<<< HEAD
         const { err } = req.query
         res.render('home', { err })
     }
 
     static validasi(req, res) {
         const { username, password } = req.body
-        User.findAll({ where: { userName: username, password } })
-            .then((data) => {
-                if (data.length == 0) {
-                    res.redirect('/?err=validation')
+        User.findOne({ where: { userName: username } })
+            .then(user => {
+                if (user) {
+                    // res.send(req.body)
+                    const isValidPassword = bcrypt.compareSync(password, user.password)
+
+                    if (isValidPassword) {
+                        currentUserName = username
+                        return res.redirect('/product')
+                    } else {
+                        const error = 'invalid username/password'
+                        return res.redirect(`/?err=${error}`)
+                    }
                 } else {
-                    currentUserName = username
-                    res.redirect(`/product`)
+                    const error = 'invalid username/password'
+                    return res.redirect(`/?err=${error}`)
                 }
-
             })
-            .catch(() => res.send('error sat'))
-
+            .catch(err => res.send("err"))
+=======
+        // const { email, password } = req.query
+        // User.findOne({
+        //     where: {
+        //         email: email,
+        //         password: password
+        //     }
+        // })
+        //     .then(data => res.send(data))
+        res.render('home')
+>>>>>>> 7fec5a9e768d8acf0f99857e50bc0a1f23fae068
     }
+
     static logout(req, res) {
         // res.send('Ini log out')
         res.redirect('/')
+    }
+
+    static failedLogin(req, res) {
+
     }
 
     static addUser(req, res) {

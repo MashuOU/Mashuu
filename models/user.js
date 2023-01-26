@@ -2,6 +2,8 @@
 const {
   Model
 } = require('sequelize');
+const bcrypt = require('bcryptjs')
+
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     /**
@@ -27,6 +29,7 @@ module.exports = (sequelize, DataTypes) => {
     email: {
       type: DataTypes.STRING,
       allowNull: false,
+      unique: true,
       validate: {
         notNull: { msg: 'Email is required' },
         notEmpty: { msg: 'Email is required' },
@@ -38,6 +41,10 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         notNull: { msg: 'Password is required' },
         notEmpty: { msg: 'Password is required' },
+        len: {
+          args: [8, 50],
+          msg: "The password length should be min 8 characters."
+        }
       }
     },
     role: {
@@ -49,6 +56,14 @@ module.exports = (sequelize, DataTypes) => {
       }
     }
   }, {
+    hooks: {
+      beforeCreate(instance, option) {
+        const salt = bcrypt.genSaltSync(8);
+        const hash = bcrypt.hashSync(instance.password, salt);
+
+        instance.password = hash
+      }
+    },
     sequelize,
     modelName: 'User',
   });
